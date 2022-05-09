@@ -1,14 +1,13 @@
 # pull official base image
 FROM python:3.9.6-alpine
 
+RUN pip install --upgrade pip
+
 COPY ./requirements.txt .
 RUN pip install -r requirements.txt
 
-COPY . /usr/src/app
-WORKDIR /usr/src/app/dock_jango_nix
+COPY ./dock_jango_nix /app
 
-
-
-RUN pip3 install -r requirements.txt
+WORKDIR /app
 
 CMD [ "python3", "manage.py", "runserver", "0.0.0.0:8000"]
