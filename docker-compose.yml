@@ -8,3 +8,11 @@ services:
       - .:/app/
     ports:
       - 8000:8000
+  ngnix:
+    build: ./ngnix
+    volumes:
+      - .:/app/
+    ports:
+      - "80:80"
+    depends_on:
+      - web
